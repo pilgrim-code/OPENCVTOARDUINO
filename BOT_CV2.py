@@ -1,6 +1,7 @@
 import os
 # import the library opencv
 import cv2
+import shutil
 # globbing utility.
 import glob
 # select the path
@@ -24,6 +25,15 @@ def crearFolder():
     else :
         print(query, "ESTA CARPETA YA EXISTE")
         return query
+
+def MoverArchivos():
+    print(query, "ESTE MENSAJE PA VER LA RUTA")
+    pattern = ruta + "\OUTPUTMONOCHROME*"
+    for file in glob.iglob(pattern, recursive=True):
+        # extract file name form file path
+        file_name = os.path.basename(file)
+        shutil.move(file, query)
+        print('Moved:', file)
         
         
 query = crearFolder()
@@ -37,6 +47,7 @@ for bb,file in enumerate (glob.glob(path)):
   k = cv2.waitKey(1000)
   # destroy the window
   cv2.destroyAllWindows()
+MoverArchivos()
   
   
   
