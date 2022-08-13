@@ -41,12 +41,16 @@ for bb,file in enumerate (glob.glob(path)):
   image_read = cv2.imread(file)
   # conversion numpy array into rgb image to show 
   c = cv2.cvtColor(image_read, cv2.COLOR_BGR2GRAY)
+ 
   cv2.imwrite(query+'MONOCHROME{}.png'.format(bb), c)
   cv2.imshow('PLOMO', c)
   # wait for 1 second
   k = cv2.waitKey(1000)
   # destroy the window
   cv2.destroyAllWindows()
+  xy = (84,48)
+  x = cv2.resize(c, xy, interpolation= cv2.INTER_LINEAR)
+  cv2.imwrite(query+'MONOCHROME{}.png'.format(bb),x)
 MoverArchivos()
   
   
