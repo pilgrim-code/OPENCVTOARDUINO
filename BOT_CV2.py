@@ -5,32 +5,32 @@ import cv2
 import glob
 # select the path
 path = "IMG/*.*"
-ruta = 'IMG/'
-carpeta = input("INGRESA UN NOMBRE PARA LA CARPETA DE SALIDA")
+ruta = 'IMG'
+
 
 def crearFolder():
-    query = ruta+carpeta
+    
+    query = ruta+'/OUTPUT'
     print(query)
-   # isExist = os.path.exists(ruta+'/colocolo')
-    if not query:
+    isExist = os.path.exists(ruta+'/OUTPUT')
+    if not isExist:
         # Create a new directory because it does not exist 
         rutanueva = query
-        carpetacreada = os.makedirs(rutanueva)
+        os.mkdir(query)
+       # os.makedirs(rutanueva)
         print(rutanueva, "ESTA DEBERIA SER UNA RUTA")
-        print("TAMOS LISTOCO CON LA NUEVA CARPET ",carpetacreada)
+        print("TAMOS LISTOCO CON LA NUEVA CARPET ",rutanueva)
         return rutanueva
     else :
         print(query, "ESTA CARPETA YA EXISTE")
         return query
         
         
-
+query = crearFolder()
 for bb,file in enumerate (glob.glob(path)):
   image_read = cv2.imread(file)
   # conversion numpy array into rgb image to show 
   c = cv2.cvtColor(image_read, cv2.COLOR_BGR2GRAY)
-  # writing the images in a folder output_images
-  query = crearFolder()
   cv2.imwrite(query+'MONOCHROME{}.png'.format(bb), c)
   cv2.imshow('PLOMO', c)
   # wait for 1 second
